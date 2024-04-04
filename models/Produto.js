@@ -1,12 +1,26 @@
 const mongoose = require('mongoose')
 
-const produtoSchema = mongoose.Schema({
-    nome: String,
-    preco: Number,
+const schema = mongoose.Schema({
+    nome: {
+        type:String,
+        require: true,
+        minLenght: 2,
+        maxLenght: 10
+    },
+    preco: {
+        type: Number,
+        default: 0,
+        min: [0, 'Mais fácil'],
+        match: /^\d+(\.\d{1,2})?$/,
+    },    
     tamanho: String,
-    tipo: String
+    tipo: {
+        type: String,
+        enum: ['Bebidas', 'Pizzas', 'Massas', 'Sobremesas']
+    },
+    ingredientes: [String] 
 })
 
-const Produto = mongoose.model('Produto', produtoSchema)
+const Produto = mongoose.model('Produto', schema)
 
 module.exports = Produto 
