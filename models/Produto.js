@@ -11,7 +11,6 @@ const schema = mongoose.Schema({
         type: Number,
         default: 0,
         min: [0, 'Mais fácil'],
-        match: /^\d+(\.\d{1,2})?$/,
     },    
     tamanho: String,
     tipo: {
